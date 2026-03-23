@@ -143,8 +143,9 @@ nav{
 .section-tag::before{content:'';display:block;width:28px;height:1px;background:var(--gold);}
 .section-title{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,46px);font-weight:700;line-height:1.2;color:var(--green);margin-bottom:22px;}
 .section-title em{font-style:italic;color:var(--green-light);}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
+.no-js .reveal{opacity:1;transform:none;}
 
 /* ─── VISION ─── */
 #vision{padding:100px 60px;background:var(--green);position:relative;overflow:hidden;}
@@ -475,14 +476,57 @@ footer{background:var(--green);padding:40px 60px;display:flex;align-items:center
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const obs=new IntersectionObserver((entries)=>{
-  entries.forEach((el,i)=>{
-    if(el.isIntersecting){setTimeout(()=>el.target.classList.add('visible'),i*80);obs.unobserve(el.target);}
+<script>
+// Show all reveal elements immediately + on scroll
+function showEl(el){ el.classList.add('visible'); }
+
+// Immediately show elements in viewport on load
+window.addEventListener('load', function(){
+  document.querySelectorAll('.reveal').forEach(function(el){
+    var rect = el.getBoundingClientRect();
+    if(rect.top < window.innerHeight) showEl(el);
   });
-},{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-window.addEventListener('scroll',()=>{
-  let cur='';
-  document.querySelectorAll('section[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id;});
-  document.querySelectorAll('.nav-links a').
+});
+
+// Reveal on scroll
+if('IntersectionObserver' in window){
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry, i){
+      if(entry.isIntersecting){
+        setTimeout(function(){ showEl(entry.target); }, i * 60);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.05, rootMargin: '0px 0px -30px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+} else {
+  // Fallback for old browsers
+  document.querySelectorAll('.reveal').forEach(function(el){ showEl(el); });
+}
+
+// Safety net - show everything after 1.5 seconds no matter what
+setTimeout(function(){
+  document.querySelectorAll('.reveal').forEach(function(el){ showEl(el); });
+}, 1500);
+
+// Active nav highlight on scroll
+window.addEventListener('scroll', function(){
+  var cur = '';
+  document.querySelectorAll('section[id]').forEach(function(s){
+    if(window.scrollY >= s.offsetTop - 100) cur = s.id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    a.classList.remove('active');
+    if(a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+
+// Close mobile nav on link click
+document.querySelectorAll('.nav-links a').forEach(function(a){
+  a.addEventListener('click', function(){
+    document.querySelector('.nav-links').classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>
