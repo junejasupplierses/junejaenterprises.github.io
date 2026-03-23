@@ -58,7 +58,7 @@ nav{
 #home{
   min-height:100vh;background:var(--green);
   display:flex;align-items:center;
-  padding:120px 60px 80px;
+  padding:100px 60px 80px;
   position:relative;overflow:hidden;
 }
 #home::before{
@@ -78,7 +78,8 @@ nav{
   opacity:0;animation:fadeUp .8s ease 0.1s forwards;
 }
 .hero-logo img{
-  height:100px;width:auto;
+  height:clamp(60px,10vw,100px);
+  width:auto;
   mix-blend-mode:screen;
   display:block;
 }
@@ -104,7 +105,7 @@ nav{
 }
 .hero-desc{
   font-size:15px;font-weight:300;line-height:1.9;
-  color:rgba(255,255,255,.6);max-width:540px;margin-bottom:44px;
+  color:rgba(255,255,255,.6);max-width:540px;margin-bottom:32px;
   opacity:0;animation:fadeUp .8s ease .7s forwards;
 }
 .hero-btns{
@@ -129,8 +130,8 @@ nav{
 }
 .btn-outline:hover{border-color:var(--gold);color:var(--gold-light);}
 .hero-stats{
-  position:absolute;right:60px;bottom:80px;
-  display:flex;gap:44px;z-index:2;
+  display:flex;gap:44px;flex-wrap:wrap;
+  margin-top:44px;
   opacity:0;animation:fadeUp .8s ease 1s forwards;
 }
 .stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--gold-light);display:block;}
@@ -264,9 +265,10 @@ footer{background:var(--green);padding:40px 60px;display:flex;align-items:center
   .nav-links a{font-size:13px;padding:6px 0;}
   .nav-toggle{display:flex;}
   .nav-logo img{height:44px;}
-  #home{padding:100px 24px 60px;}
-  .hero-logo img{height:72px;}
-  .hero-stats{position:static;flex-wrap:wrap;gap:24px;margin-top:36px;}
+  #home{padding:90px 24px 60px;}
+  .hero-logo img{height:64px;}
+  .hero-stats{gap:28px;margin-top:32px;}
+  .stat-num{font-size:24px;}
   #vision,#why{padding:72px 24px;}
   .vision-pillars,.svc-grid,.biz-grid,.why-grid{grid-template-columns:1fr;}
   #about,#contact{padding:72px 24px;grid-template-columns:1fr;}
@@ -420,7 +422,7 @@ footer{background:var(--green);padding:40px 60px;display:flex;align-items:center
     <p class="contact-intro">Whether you need guidance on a loan, want to start investing, or simply want to understand your financial options — reach out. The first consultation is always free.</p>
     <div class="info-item"><div class="info-icon">📍</div><div><div class="info-label">Location</div><div class="info-value">Ahmedabad, Gujarat, India</div></div></div>
     <div class="info-item"><div class="info-icon">🌐</div><div><div class="info-label">Website</div><div class="info-value">junejaenterprises.com</div></div></div>
-    <div class="info-item"><div class="info-icon">📧</div><div><div class="info-label">Email</div><div class="info-value"><a href="mailto:info@junejaenterprises.com">info@junejaenterprises.com</a></div></div></div>
+    <div class="info-item"><div class="info-icon">📧</div><div><div class="info-label">Email</div><div class="info-value"><a href="/cdn-cgi/l/email-protection#254c4b434a654f504b404f44404b51405755574c5640560b464a48"><span class="__cf_email__" data-cfemail="0c65626a634c66796269666d696278697e7c7e657f697f226f6361">[email&#160;protected]</span></a></div></div></div>
     <div class="info-item"><div class="info-icon" style="font-size:16px;font-weight:700;font-family:serif">𝕏</div><div><div class="info-label">X (Twitter)</div><div class="info-value"><a href="https://x.com/junejaenterpris" target="_blank">@junejaenterpris</a></div></div></div>
   </div>
   <div class="cform reveal">
@@ -467,13 +469,13 @@ footer{background:var(--green);padding:40px 60px;display:flex;align-items:center
   <div class="footer-right">
     <div class="footer-copy">© 2025 Juneja Enterprises<br>Ahmedabad, Gujarat</div>
     <div class="footer-social">
-      <a href="mailto:info@junejaenterprises.com">Email</a>
+      <a href="/cdn-cgi/l/email-protection#5930373f3619332c373c33383c372d3c2b292b302a3c2a773a3634">Email</a>
       <a href="https://x.com/junejaenterpris" target="_blank">𝕏 Twitter</a>
     </div>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const obs=new IntersectionObserver((entries)=>{
   entries.forEach((el,i)=>{
     if(el.isIntersecting){setTimeout(()=>el.target.classList.add('visible'),i*80);obs.unobserve(el.target);}
@@ -483,14 +485,4 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 window.addEventListener('scroll',()=>{
   let cur='';
   document.querySelectorAll('section[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id;});
-  document.querySelectorAll('.nav-links a').forEach(a=>{
-    a.classList.remove('active');
-    if(a.getAttribute('href')==='#'+cur)a.classList.add('active');
-  });
-});
-document.querySelectorAll('.nav-links a').forEach(a=>{
-  a.addEventListener('click',()=>document.querySelector('.nav-links').classList.remove('open'));
-});
-</script>
-</body>
-</html>
+  document.querySelectorAll('.nav-links a').
