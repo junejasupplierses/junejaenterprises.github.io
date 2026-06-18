@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Authorization — Juneja Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #0d2b1e;
+    --green-mid: #1a4a2e;
+    --green-light: #2d6e47;
+    --gold: #c9a84c;
+    --gold-light: #e2c47a;
+    --cream: #faf7f0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--green);
+    color: var(--cream);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .card {
+    background: var(--green-mid);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 12px;
+    padding: 48px 40px;
+    max-width: 540px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+  }
+  .logo {
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    letter-spacing: 0.05em;
+    margin-bottom: 32px;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding-bottom: 20px;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    color: rgba(250,247,240,0.5);
+    font-size: 13px;
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+  .code-box {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-family: monospace;
+    font-size: 13px;
+    color: #4ade80;
+    word-break: break-all;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: left;
+    min-height: 54px;
+  }
+  .error-box {
+    color: #f87171;
+  }
+  .btn {
+    background: var(--gold);
+    color: var(--green);
+    border: none;
+    padding: 12px 32px;
+    border-radius: 6px;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+  .btn:hover { background: var(--gold-light); }
+  .btn:disabled { background: #4a4a3a; color: #888; cursor: not-allowed; }
+  .note {
+    color: rgba(250,247,240,0.4);
+    font-size: 11px;
+    margin-top: 8px;
+    line-height: 1.7;
+  }
+  .tick {
+    display: inline-block;
+    background: #16a34a;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+    line-height: 20px;
+    margin-left: 8px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .tick.show { opacity: 1; }
+  .timer {
+    color: var(--gold);
+    font-size: 12px;
+    margin-top: 16px;
+    font-weight: 500;
+  }
+  .footer {
+    margin-top: 40px;
+    color: rgba(250,247,240,0.25);
+    font-size: 11px;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="logo">Juneja Enterprises</div>
+  <h2>Authorization Successful</h2>
+  <p class="subtitle">Copy the code below and paste it into your token script</p>
+
+  <div class="code-box" id="code-display">Retrieving code…</div>
+
+  <button class="btn" id="copy-btn" onclick="copyCode()" disabled>
+    Copy Code <span class="tick" id="tick">✓</span>
+  </button>
+
+  <div class="timer" id="timer"></div>
+
+  <p class="note">
+    This code expires in 60 seconds.<br>
+    Run <code style="background:rgba(0,0,0,0.3);padding:1px 5px;border-radius:3px">python scripts/upstox_get_token.py</code> on VPS and paste when prompted.
+  </p>
+</div>
+
+<p class="footer">Private authorization page — not indexed</p>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const code   = params.get('code');
+  const err    = params.get('error');
+  const codeEl = document.getElementById('code-display');
+  const copyBtn = document.getElementById('copy-btn');
+  const timerEl = document.getElementById('timer');
+
+  if (err) {
+    codeEl.innerHTML = '<span class="error-box">Error: ' + err + '<br>' + (params.get('error_description') || '') + '</span>';
+  } else if (code) {
+    codeEl.innerText = code;
+    copyBtn.disabled = false;
+
+    // Countdown timer (60s until code expires)
+    let secs = 60;
+    timerEl.innerText = 'Expires in ' + secs + 's';
+    const iv = setInterval(() => {
+      secs--;
+      if (secs <= 0) {
+        clearInterval(iv);
+        timerEl.style.color = '#f87171';
+        timerEl.innerText = 'Code expired — please re-login';
+        copyBtn.disabled = true;
+      } else {
+        timerEl.innerText = 'Expires in ' + secs + 's';
+        if (secs <= 15) timerEl.style.color = '#f87171';
+      }
+    }, 1000);
+  } else {
+    codeEl.innerHTML = '<span class="error-box">No authorization code found.<br>Use the correct login URL.</span>';
+  }
+
+  function copyCode() {
+    navigator.clipboard.writeText(code).then(() => {
+      document.getElementById('tick').classList.add('show');
+      setTimeout(() => document.getElementById('tick').classList.remove('show'), 2000);
+    });
+  }
+</script>
+
+<!-- No tracking, no analytics, no external requests beyond Google Fonts -->
+<meta name="robots" content="noindex, nofollow">
+</body>
+</html>
