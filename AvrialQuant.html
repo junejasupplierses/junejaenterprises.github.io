@@ -3,104 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>अविरलQuant - Automated Algorithmic Trading Software</title>
+    <title>अविरलQuant — Juneja Enterprises</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #0d1117;
-            color: #c9d1d9;
+        :root {
+            --green: #0d2b1e;
+            --green-mid: #1a4a2e;
+            --green-light: #2d6e47;
+            --gold: #c9a84c;
+            --gold-light: #e2c47a;
+            --cream: #faf7f0;
+            --cream-dark: #f0ebe0;
+            --white: #fff;
+            --text: #0d1f16;
+            --muted: #6b7c72;
         }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 8px 48px; background: rgba(13,43,30,0.97);
+            backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.2);
         }
-        .header {
-            text-align: center;
-            border-bottom: 1px solid #30363d;
-            padding-bottom: 30px;
+        .nav-logo a { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--gold-light); text-decoration: none; }
+        .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
+        .nav-links a { font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.8); text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase; transition: color .3s; white-space: nowrap; }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+        .nav-cta { background: var(--gold)!important; color: var(--green)!important; padding: 8px 18px!important; border-radius: 2px; font-weight: 500!important; }
+        .nav-cta:hover { background: var(--gold-light)!important; }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 50vh; background: var(--green);
+            display: flex; align-items: center; justify-content: center;
+            padding: 140px 60px 80px; position: relative; overflow: hidden; text-align: center;
         }
-        .logo {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #ffffff;
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(45,110,71,.25), transparent 70%);
         }
-        .logo span {
-            color: #58a6ff;
+        .hero-content { position: relative; z-index: 2; max-width: 800px; }
+        .hero-tag { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 500; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+        .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 64px); font-weight: 700; color: var(--white); margin-bottom: 12px; }
+        .hero-title em { font-style: italic; color: var(--gold-light); font-weight: 400; }
+        .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 2.5vw, 24px); font-weight: 300; font-style: italic; color: rgba(255,255,255,.7); margin-bottom: 24px; }
+
+        /* CONTENT SECTION */
+        .content-section { padding: 80px 60px; max-width: 1100px; margin: 0 auto; }
+        .section-tag { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+        .section-tag::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 42px); font-weight: 700; color: var(--green); margin-bottom: 24px; }
+        .section-title em { font-style: italic; color: var(--green-light); }
+
+        /* CARDS & GRID */
+        .phil-card { background: var(--green); color: var(--white); padding: 40px; border-radius: 4px; border-top: 3px solid var(--gold); margin-bottom: 60px; }
+        .phil-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold-light); margin-bottom: 16px; }
+        .phil-card p { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.8); margin-bottom: 12px; }
+
+        .capabilities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 30px; }
+        .cap-card { background: var(--white); border-top: 3px solid var(--gold); padding: 32px 26px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+        .cap-card h4 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--green); margin-bottom: 12px; }
+        .cap-card p { font-size: 13px; font-weight: 300; line-height: 1.8; color: var(--muted); }
+
+        .btn-gold { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--green); background: var(--gold); padding: 14px 32px; text-decoration: none; border-radius: 2px; transition: background .3s, transform .2s; margin-top: 40px; }
+        .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+        /* FOOTER */
+        footer { background: var(--green); padding: 40px 60px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(201,168,76,.15); color: rgba(255,255,255,.4); font-size: 11px; }
+        footer a { color: var(--gold-light); text-decoration: none; }
+
+        @media(max-width: 768px) {
+            nav { padding: 10px 20px; }
+            .hero { padding: 120px 24px 60px; }
+            .content-section { padding: 60px 24px; }
+            .capabilities-grid { grid-template-columns: 1fr; }
+            footer { flex-direction: column; gap: 16px; text-align: center; }
         }
-        .badge {
-            display: inline-block;
-            background-color: #238636;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
-        .content-section {
-            margin-top: 40px;
-            line-height: 1.6;
-        }
-        .meaning-box {
-            background-color: #161b22;
-            body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #94a3b8; line-height: 1.6; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
-        .header { text-align: center; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 40px; margin-bottom: 40px; }
-        .logo { font-size: 2.5rem; font-weight: 800; color: #ffffff; letter-spacing: -0.5px; }
-        .logo span { color: #f59e0b; }
-        .badge { display: inline-block; background-color: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); padding: 6px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-top: 12px; }
-        .header p { color: #94a3b8; margin-top: 15px; font-size: 1.1rem; }
-        .meaning-box { background-color: #131927; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 30px; margin-bottom: 40px; }
-        .meaning-box h2 { color: #ffffff; margin-bottom: 15px; font-size: 1.5rem; }
-        .meaning-box p { margin-bottom: 10px; color: #cbd5e1; }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 25px; }
-        .feature-card { background: #131927; border: 1px solid rgba(255, 255, 255, 0.08); padding: 28px; border-radius: 12px; transition: transform 0.2s ease, border-color 0.2s ease; }
-        .feature-card:hover { transform: translateY(-4px); border-color: rgba(245, 158, 11, 0.4); }
-        .feature-card h3 { color: #ffffff; margin-bottom: 12px; font-size: 1.25rem; }
-        .cta-button { display: inline-block; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #ffffff; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: 600; margin-top: 20px; transition: opacity 0.2s ease; }
-        .cta-button:hover { opacity: 0.9; }
+    </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header">
-        <div class="logo">अविरल<span>Quant</span></div>
-        <div class="badge">Coming Soon</div>
-        <p>Next-Generation Quantitative & Algorithmic Trading Software</p>
-    </div>
+    <!-- NAV -->
+    <nav>
+        <div class="nav-logo">
+            <a href="index.html">JUNEJA ENTERPRISES</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#vision">Vision</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#why">Why Us</a></li>
+            <li><a href="AvrialQuant.html" class="active">अविरलQuant</a></li>
+            <li><a href="index.html#contact" class="nav-cta">Contact Us</a></li>
+        </ul>
+    </nav>
 
-    <div class="content-section">
-        <div class="meaning-box">
-            <h2>The Philosophy Behind the Name</h2>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">Automated Systems</div>
+            <h1 class="hero-title">अविरल<em>Quant</em></h1>
+            <p class="hero-sub">Next-Generation Quantitative & Algorithmic Trading Software</p>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="content-section">
+        <div class="section-tag">Core Philosophy</div>
+        <h2 class="section-title">The Philosophy <em>Behind the Name</em></h2>
+        
+        <div class="phil-card">
             <p><strong>अविरल (Aviral):</strong> Continuous, uninterrupted, and seamlessly flowing stream.</p>
             <p><strong>Quant (Quantitative):</strong> Data-driven math, algorithmic precision, and strategy execution.</p>
-            <p><strong>अविरलQuant</strong> represents uninterrupted data flow paired with automated execution to deliver consistent trading strategies without emotional bias.</p>
+            <p style="margin-top: 16px; color: var(--gold-light);"><strong>अविरलQuant</strong> represents uninterrupted data flow paired with automated execution to deliver consistent trading strategies without emotional bias.</p>
         </div>
 
-        <h2>Key Capabilities</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <h3>Automated Execution</h3>
+        <div class="section-tag">System Features</div>
+        <h2 class="section-title">Key <em>Capabilities</em></h2>
+
+        <div class="capabilities-grid">
+            <div class="cap-card">
+                <h4>Automated Execution</h4>
                 <p>Execute multi-asset strategies directly with real-time broker integration and ultra-low latency.</p>
             </div>
-            <div class="feature-card">
-                <h3>Risk Control</h3>
+            <div class="cap-card">
+                <h4>Risk Control</h4>
                 <p>Built-in stop loss, daily drawdown guardrails, and automated position sizing protection.</p>
             </div>
-            <div class="feature-card">
-                <h3>Strategy Backtesting</h3>
+            <div class="cap-card">
+                <h4>Strategy Backtesting</h4>
                 <p>Test historical strategy data with custom market parameters before live deployment.</p>
             </div>
         </div>
 
-        <div style="text-align: center; margin-top: 40px;">
-            <h3>Ready to automate your trading workflow?</h3>
-            <a href="index.html" class="cta-button">Back to Main Site</a>
+        <div style="text-align: center;">
+            <a href="index.html#contact" class="btn-gold">Get Started / Contact Us</a>
         </div>
-    </div>
-</div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div>&copy; Juneja Enterprises. All rights reserved.</div>
+        <div><a href="index.html">Back to Main Site</a></div>
+    </footer>
 
 </body>
 </html>
