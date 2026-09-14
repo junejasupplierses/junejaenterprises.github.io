@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>अविरलQuant — Juneja Enterprises</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <meta property="og:title" content="अविरलQuant — Juneja Enterprises">
+    <meta property="og:image" content="assets/aviralquant-mark.png">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -30,7 +34,9 @@
             padding: 8px 48px; background: rgba(13,43,30,0.97);
             backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.2);
         }
-        .nav-logo a { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--gold-light); text-decoration: none; }
+        .nav-logo a { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-logo img { height: 44px; width: auto; display: block; border-radius: 6px; }
+        .nav-logo span { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--gold-light); }
         .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
         .nav-links a { font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.8); text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase; transition: color .3s; white-space: nowrap; }
         .nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
@@ -49,8 +55,7 @@
         }
         .hero-content { position: relative; z-index: 2; max-width: 800px; }
         .hero-tag { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 500; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
-        .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 64px); font-weight: 700; color: var(--white); margin-bottom: 12px; }
-        .hero-title em { font-style: italic; color: var(--gold-light); font-weight: 400; }
+        .hero-mark { width: min(720px, 92vw); height: auto; display: block; margin: 0 auto 18px; }
         .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 2.5vw, 24px); font-weight: 300; font-style: italic; color: rgba(255,255,255,.7); margin-bottom: 24px; }
 
         /* CONTENT SECTION */
@@ -74,8 +79,10 @@
         .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
 
         /* FOOTER */
-        footer { background: var(--green); padding: 40px 60px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(201,168,76,.15); color: rgba(255,255,255,.4); font-size: 11px; }
+        footer { background: var(--green); padding: 40px 60px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(201,168,76,.15); color: rgba(255,255,255,.4); font-size: 11px; gap: 20px; }
         footer a { color: var(--gold-light); text-decoration: none; }
+        .footer-brand { display: flex; align-items: center; gap: 12px; }
+        .footer-brand img { height: 36px; width: auto; border-radius: 5px; }
 
         @media(max-width: 768px) {
             nav { padding: 10px 20px; }
@@ -91,7 +98,10 @@
     <!-- NAV -->
     <nav>
         <div class="nav-logo">
-            <a href="index.html">JUNEJA ENTERPRISES</a>
+            <a href="index.html" title="Juneja Enterprises">
+                <img src="assets/aviralquant-mark.png" width="312" height="306" alt="अविरलQuant">
+                <span>अविरलQuant</span>
+            </a>
         </div>
         <ul class="nav-links">
             <li><a href="index.html#home">Home</a></li>
@@ -108,7 +118,9 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-tag">Automated Systems</div>
-            <h1 class="hero-title">अविरल<em>Quant</em></h1>
+            <h1>
+                <img class="hero-mark" src="assets/aviralquant-wordmark.png" width="993" height="254" alt="अविरलQuant — Systems for a brighter edge">
+            </h1>
             <p class="hero-sub">Next-Generation Quantitative & Algorithmic Trading Software</p>
         </div>
     </section>
@@ -149,7 +161,10 @@
 
     <!-- FOOTER -->
     <footer>
-        <div>&copy; Juneja Enterprises. All rights reserved.</div>
+        <div class="footer-brand">
+            <img src="assets/aviralquant-mark.png" width="312" height="306" alt="">
+            <div>&copy; Juneja Enterprises. All rights reserved.</div>
+        </div>
         <div><a href="index.html">Back to Main Site</a></div>
     </footer>
 
