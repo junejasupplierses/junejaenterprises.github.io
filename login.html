@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Client Login — अविरलQuant</title>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #081f15;
+    --green-mid: #123522;
+    --green-light: #255a3d;
+    --gold: #c9a84c;
+    --gold-light: #e2c47a;
+    --cream: #faf7f0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--green);
+    background-image: radial-gradient(ellipse 60% 60% at 50% 40%, rgba(37,90,61,.35), transparent 70%);
+    color: var(--cream);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+  }
+  .card {
+    background: var(--green-mid);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-top: 3px solid var(--gold);
+    border-radius: 10px;
+    padding: 40px 32px 32px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+  }
+  .brand { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 26px; text-decoration: none; }
+  .brand img { height: 72px; width: auto; }
+  .brand span { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--gold-light); }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+  .sub {
+    text-align: center;
+    color: rgba(250,247,240,0.55);
+    font-size: 13px;
+    font-weight: 300;
+    margin-bottom: 22px;
+  }
+  label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 16px 0 6px;
+  }
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--cream);
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 4px;
+  }
+  input:focus { outline: 2px solid var(--gold); border-color: transparent; }
+  .show { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; letter-spacing: 0; text-transform: none; font-weight: 300; color: rgba(250,247,240,0.65); cursor: pointer; }
+  .show input { accent-color: var(--gold); }
+  button {
+    width: 100%;
+    margin-top: 24px;
+    padding: 14px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--green);
+    background: var(--gold);
+    border: 0;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background .3s;
+  }
+  button:hover { background: var(--gold-light); }
+  button[disabled] { opacity: .7; cursor: wait; }
+  .note {
+    margin-top: 18px;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgba(250,247,240,0.5);
+    text-align: center;
+  }
+  .foot { margin-top: 22px; font-size: 12px; text-align: center; }
+  .foot a { color: var(--gold-light); text-decoration: none; margin: 0 8px; }
+  .foot a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<main class="card">
+  <a class="brand" href="AviralQuant.html" title="अविरलQuant">
+    <img src="assets/aviralquant-mark.png" width="373" height="325" alt="">
+    <span>अविरलQuant</span>
+  </a>
+  <h1>Client Login</h1>
+  <p class="sub">Sign in to open your trading dashboard</p>
+
+  <!-- Sends the user ID and password straight to the dashboard over HTTPS.
+       Nothing is stored on this website. The dashboard checks them, starts a
+       secure session and opens the dashboard. A wrong password shows the
+       dashboard's own login page with the message. -->
+  <form id="login-form" method="post" action="https://aviralquant.junejaenterprises.com/login" autocomplete="on">
+    <label for="username">User ID</label>
+    <input id="username" name="username" type="text" autocomplete="username"
+           autocapitalize="none" spellcheck="false" required autofocus>
+
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" autocomplete="current-password" required>
+
+    <label class="show"><input type="checkbox" id="show-pw"> Show password</label>
+
+    <input type="hidden" name="next" value="">
+    <button type="submit" id="login-btn">Open Dashboard</button>
+  </form>
+
+  <p class="note">For registered AviralQuant users only. Use the user ID and password given to you by Juneja Enterprises.</p>
+
+  <div class="foot">
+    <a href="AviralQuant.html">About अविरलQuant</a>
+    <a href="index.html#contact">Need help?</a>
+  </div>
+</main>
+
+<script>
+  document.getElementById('show-pw').addEventListener('change', function () {
+    document.getElementById('password').type = this.checked ? 'text' : 'password';
+  });
+  document.getElementById('login-form').addEventListener('submit', function () {
+    var b = document.getElementById('login-btn');
+    b.disabled = true;
+    b.textContent = 'Opening…';
+  });
+  // If the user comes BACK to this page (browser Back button), re-enable the button.
+  window.addEventListener('pageshow', function () {
+    var b = document.getElementById('login-btn');
+    b.disabled = false;
+    b.textContent = 'Open Dashboard';
+  });
+</script>
+
+</body>
+</html>

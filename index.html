@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
 <style>
 :root{
-  --green:#0d2b1e;--green-mid:#1a4a2e;--green-light:#2d6e47;
+  --green:#081f15;--green-mid:#123522;--green-light:#255a3d;
   --gold:#c9a84c;--gold-light:#e2c47a;
   --cream:#faf7f0;--cream-dark:#f0ebe0;--white:#fff;
   --text:#0d1f16;--muted:#6b7c72;
@@ -26,7 +26,7 @@ nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
   display:flex;align-items:center;justify-content:space-between;
   padding:8px 48px;
-  background:rgba(13,43,30,0.97);
+  background:rgba(8,31,21,0.97);
   backdrop-filter:blur(12px);
   border-bottom:1px solid rgba(201,168,76,0.2);
 }
@@ -72,7 +72,7 @@ nav{
 }
 #home::before{
   content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 60% 60% at 80% 50%,rgba(45,110,71,.25),transparent 70%),
+  background:radial-gradient(ellipse 60% 60% at 80% 50%,rgba(37,90,61,.25),transparent 70%),
              radial-gradient(ellipse 40% 80% at 10% 80%,rgba(201,168,76,.08),transparent 60%);
 }
 .hero-grid{
@@ -152,7 +152,7 @@ nav{
 
 /* ─── VISION ─── */
 #vision{padding:100px 60px;background:var(--green);position:relative;overflow:hidden;}
-#vision::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(45,110,71,.3),transparent 70%);}
+#vision::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(37,90,61,.3),transparent 70%);}
 .vision-inner{position:relative;z-index:1;max-width:1000px;margin:0 auto;text-align:center;}
 .vision-inner .section-tag{justify-content:center;}
 .vision-inner .section-tag::before{display:none;}
@@ -181,7 +181,7 @@ nav{
 
 /* ─── SERVICES ─── */
 #services{padding:100px 60px;background:var(--green);position:relative;overflow:hidden;}
-#services::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 100%,rgba(45,110,71,.3),transparent 70%);}
+#services::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 100%,rgba(37,90,61,.3),transparent 70%);}
 .svc-hd{text-align:center;margin-bottom:56px;position:relative;z-index:1;}
 .svc-hd .section-tag{justify-content:center;}
 .svc-hd .section-tag::before{display:none;}
@@ -248,6 +248,10 @@ nav{
 .fsub{width:100%;background:var(--gold);color:var(--green);border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:12px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;padding:15px;border-radius:2px;transition:background .3s,transform .2s;margin-top:6px;}
 .fsub:hover{background:var(--gold-light);transform:translateY(-2px);}
 .fnote{font-size:11px;color:rgba(255,255,255,.4);margin-top:10px;text-align:center;min-height:14px;}
+.fhint{letter-spacing:0;text-transform:none;color:rgba(255,255,255,.4);}
+.fhp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+.flink{background:none;border:0;color:var(--gold-light);font-family:'Jost',sans-serif;font-size:12px;text-decoration:underline;cursor:pointer;padding:4px;}
+.fsub[disabled]{opacity:.7;cursor:wait;transform:none;}
 
 /* ─── FOOTER ─── */
 footer{background:var(--green);padding:40px 60px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(201,168,76,.15);}
@@ -265,7 +269,7 @@ footer{background:var(--green);padding:40px 60px;display:flex;align-items:center
 /* ─── RESPONSIVE ─── */
 @media(max-width:768px){
   nav{padding:10px 16px;}
-  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(13,43,30,.98);padding:24px 20px;gap:20px;border-bottom:1px solid rgba(201,168,76,.2);}
+  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(8,31,21,.98);padding:24px 20px;gap:20px;border-bottom:1px solid rgba(201,168,76,.2);}
   .nav-links.open{display:flex;}
   .nav-links a{font-size:13px;padding:6px 0;}
   .nav-toggle{display:flex;}
@@ -307,6 +311,7 @@ footer{background:var(--green);padding:40px 60px;display:flex;align-items:center
     <li><a href="#services">Services</a></li>
     <li><a href="#why">Why Us</a></li>
     <li><a href="AviralQuant.html">अविरलQuant</a></li>
+    <li><a href="login.html">Client Login</a></li>
     <li><a href="#contact" class="nav-cta">Contact Us</a></li>
   </ul>
 </nav>
@@ -441,7 +446,7 @@ footer{background:var(--green);padding:40px 60px;display:flex;align-items:center
       <div class="fg"><label for="f-name">Full Name</label><input id="f-name" type="text" placeholder="Your name"></div>
       <div class="fg"><label for="f-phone">Phone Number</label><input id="f-phone" type="tel" placeholder="+91 XXXXX XXXXX"></div>
     </div>
-    <div class="fg"><label for="f-email">Email Address</label><input id="f-email" type="email" placeholder="your@email.com"></div>
+    <div class="fg"><label for="f-email">Email Address <span class="fhint">(we send a code here)</span></label><input id="f-email" type="email" autocomplete="email" placeholder="your@email.com"></div>
     <div class="fg"><label for="f-service">Service Interested In</label>
       <select id="f-service">
         <option value="">Select a service...</option>
@@ -465,8 +470,11 @@ footer{background:var(--green);padding:40px 60px;display:flex;align-items:center
       </select>
     </div>
     <div class="fg"><label for="f-query">Your Query</label><textarea id="f-query" placeholder="Briefly describe what you need help with..."></textarea></div>
-    <button class="fsub" type="button" onclick="sendConsultation(this)">Send Message</button>
-    <div class="fnote" id="f-note"></div>
+    <input type="text" id="f-website" tabindex="-1" autocomplete="off" aria-hidden="true" class="fhp">
+    <div class="fg" id="f-otp-wrap" hidden><label for="f-otp">Verification code <span class="fhint">(6 digits, sent to your email)</span></label><input id="f-otp" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="123456"></div>
+    <button class="fsub" id="f-send" type="button" onclick="sendConsultation(this)">Send Message</button>
+    <div class="fnote" id="f-note" role="status" aria-live="polite"></div>
+    <div class="fnote" id="f-again" hidden><button type="button" class="flink" onclick="enqStartOver()">Resend code / change email</button></div>
   </div>
 </section>
 
@@ -490,34 +498,103 @@ footer{background:var(--green);padding:40px 60px;display:flex;align-items:center
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // Contact form: opens visitor's email app with all details filled in, addressed to you
-function sendConsultation(btn){
-  var name    = document.getElementById('f-name').value.trim();
-  var phone   = document.getElementById('f-phone').value.trim();
-  var email   = document.getElementById('f-email').value.trim();
-  var service = document.getElementById('f-service').value;
-  var query   = document.getElementById('f-query').value.trim();
-  var note    = document.getElementById('f-note');
+// ── Enquiry form ─────────────────────────────────────────────────────────
+// ENQUIRY_API = the Google Apps Script "Web app" URL (ends with /exec), see
+// _apps_script/SETUP.md. Empty = the old way (opens the visitor's email app).
+// With it: step 1 emails the visitor a 6-digit code; step 2 checks the code
+// and the enquiry is emailed to info@junejaenterprises.com.
+var ENQUIRY_API = '';
+var ENQ_TO = 'info@junejaenterprises.com';
+var enqStep = 'details';
 
-  if(!name || (!phone && !email)){
-    note.textContent = 'Please enter your name and your phone number or email.';
-    note.style.color = '#e2c47a';
+function enqFields(){
+  return {
+    name:    document.getElementById('f-name').value.trim(),
+    phone:   document.getElementById('f-phone').value.trim(),
+    email:   document.getElementById('f-email').value.trim(),
+    service: document.getElementById('f-service').value,
+    query:   document.getElementById('f-query').value.trim(),
+    website: document.getElementById('f-website').value
+  };
+}
+function enqNote(text, isError){
+  var note = document.getElementById('f-note');
+  note.style.color = isError ? '#e2c47a' : 'rgba(255,255,255,.75)';
+  note.textContent = text;
+}
+function enqBusy(btn, text){ btn.disabled = true; btn.textContent = text; }
+function enqIdle(btn){ btn.disabled = false; btn.textContent = enqStep === 'code' ? 'Verify & Send' : 'Send Message'; }
+function enqCall(payload){
+  // text/plain keeps this a "simple" request, which Google's web app accepts from any site.
+  return fetch(ENQUIRY_API, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(payload)})
+    .then(function(r){ return r.json(); });
+}
+function enqShowCode(on){
+  document.getElementById('f-otp-wrap').hidden = !on;
+  document.getElementById('f-again').hidden = !on;
+  document.getElementById('f-email').readOnly = on;
+}
+function enqStartOver(){
+  enqStep = 'details';
+  enqShowCode(false);
+  document.getElementById('f-otp').value = '';
+  enqIdle(document.getElementById('f-send'));
+  enqNote('Check your email address, then press Send Message to get a new code.', false);
+  document.getElementById('f-email').focus();
+}
+function enqMailto(f){
+  var subject = 'Consultation Request' + (f.service ? ' - ' + f.service : '');
+  var body =
+    'Name: '    + f.name + '\n' +
+    'Phone: '   + (f.phone || '-') + '\n' +
+    'Email: '   + (f.email || '-') + '\n' +
+    'Service: ' + (f.service || '-') + '\n\n' +
+    'Query:\n'  + (f.query || '-');
+  window.location.href = 'mailto:' + ENQ_TO
+    + '?subject=' + encodeURIComponent(subject)
+    + '&body='    + encodeURIComponent(body);
+  enqNote('Your email app is opening — please press Send there. Or email us directly at ' + ENQ_TO, false);
+}
+
+function sendConsultation(btn){
+  var f = enqFields();
+  if(!ENQUIRY_API){
+    if(!f.name || (!f.phone && !f.email)){ enqNote('Please enter your name and your phone number or email.', true); return; }
+    enqMailto(f);
+    return;
+  }
+  var failed = function(){ enqIdle(btn); enqNote('Could not reach our server. Please try again, or email ' + ENQ_TO, true); };
+
+  if(enqStep === 'details'){
+    if(!f.name || !f.email){ enqNote('Please enter your name and email address — we send a code to your email.', true); return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email)){ enqNote('Please check your email address.', true); return; }
+    enqBusy(btn, 'Sending code…');
+    enqCall({action:'send_otp', email:f.email, name:f.name, website:f.website}).then(function(d){
+      if(d && d.ok){
+        enqStep = 'code';
+        enqShowCode(true);
+        enqIdle(btn);
+        enqNote('We emailed a 6-digit code to ' + f.email + '. Type it above and press Verify & Send. (Not there? Check Spam.)', false);
+        document.getElementById('f-otp').focus();
+      } else { enqIdle(btn); enqNote((d && d.error) || 'Could not send the code. Please try again.', true); }
+    }).catch(failed);
     return;
   }
 
-  var subject = 'Consultation Request' + (service ? ' - ' + service : '');
-  var body =
-    'Name: '    + name + '\n' +
-    'Phone: '   + (phone || '-') + '\n' +
-    'Email: '   + (email || '-') + '\n' +
-    'Service: ' + (service || '-') + '\n\n' +
-    'Query:\n'  + (query || '-');
-
-  window.location.href = 'mailto:info@junejaenterprises.com'
-    + '?subject=' + encodeURIComponent(subject)
-    + '&body='    + encodeURIComponent(body);
-
-  note.style.color = 'rgba(255,255,255,.55)';
-  note.textContent = 'Your email app is opening — please press Send there. Or email us directly at info@junejaenterprises.com';
+  var code = document.getElementById('f-otp').value.replace(/\D/g, '');
+  if(code.length !== 6){ enqNote('Please type the 6-digit code from your email.', true); return; }
+  enqBusy(btn, 'Sending…');
+  enqCall({action:'submit', email:f.email, code:code, name:f.name, phone:f.phone,
+           service:f.service, query:f.query, website:f.website}).then(function(d){
+    if(d && d.ok){
+      ['f-name','f-phone','f-email','f-query','f-otp'].forEach(function(id){ document.getElementById(id).value = ''; });
+      document.getElementById('f-service').value = '';
+      enqStep = 'details';
+      enqShowCode(false);
+      enqIdle(btn);
+      enqNote('Thank you! Your email is verified and your enquiry has reached us. We will reply within 24 hours.', false);
+    } else { enqIdle(btn); enqNote((d && d.error) || 'Could not send. Please try again.', true); }
+  }).catch(failed);
 }
 
 // Show all reveal elements immediately + on scroll
