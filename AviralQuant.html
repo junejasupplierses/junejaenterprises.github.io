@@ -11,9 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
     <style>
         :root {
-            --green: #0d2b1e;
-            --green-mid: #1a4a2e;
-            --green-light: #2d6e47;
+            --green: #081f15;
+            --green-mid: #123522;
+            --green-light: #255a3d;
             --gold: #c9a84c;
             --gold-light: #e2c47a;
             --cream: #faf7f0;
@@ -31,7 +31,7 @@
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 200;
             display: flex; align-items: center; justify-content: space-between;
-            padding: 8px 48px; background: rgba(13,43,30,0.97);
+            padding: 8px 48px; background: rgba(8,31,21,0.97);
             backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.2);
         }
         .nav-logo a { display: flex; align-items: center; gap: 10px; text-decoration: none; }
@@ -51,7 +51,7 @@
         }
         .hero::before {
             content: ''; position: absolute; inset: 0;
-            background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(45,110,71,.25), transparent 70%);
+            background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(37,90,61,.25), transparent 70%);
         }
         .hero-content { position: relative; z-index: 2; max-width: 1180px; width: 100%; }
         .hero-tag { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 500; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
