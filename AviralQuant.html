@@ -9,6 +9,7 @@
     <meta property="og:title" content="अविरलQuant — Juneja Enterprises">
     <meta property="og:image" content="assets/aviralquant-mark.png">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+    <script>try { if (localStorage.getItem("aq-page-theme") !== "classic") document.documentElement.setAttribute("data-theme","banner"); } catch (e) {}</script>
     <style>
         :root {
             --green: #0d2b1e;
@@ -21,6 +22,32 @@
             --white: #fff;
             --text: #0d1f16;
             --muted: #6b7c72;
+            --nav: rgba(13,43,30,0.97);
+            --nav-line: rgba(201,168,76,0.2);
+            --on-dark: rgba(255,255,255,0.8);
+            --on-dark-soft: rgba(255,255,255,0.7);
+            --hero-glow: rgba(45,110,71,.25);
+            --footer-line: rgba(201,168,76,.15);
+            --footer-ink: rgba(255,255,255,.4);
+        }
+        html[data-theme="banner"] {
+            --green: #3d5160;
+            --green-mid: #52687a;
+            --green-light: #7d93a3;
+            --gold: #b08d52;
+            --gold-light: #c4a56a;
+            --cream: #eef3ec;
+            --cream-dark: #e4ece3;
+            --white: #f8fbf7;
+            --text: #243038;
+            --muted: #6c7b74;
+            --nav: rgba(61,81,96,0.96);
+            --nav-line: rgba(176,141,82,0.35);
+            --on-dark: rgba(255,255,255,0.86);
+            --on-dark-soft: rgba(255,255,255,0.72);
+            --hero-glow: rgba(176,141,82,0.16);
+            --footer-line: rgba(176,141,82,0.28);
+            --footer-ink: rgba(255,255,255,0.55);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,14 +58,17 @@
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 200;
             display: flex; align-items: center; justify-content: space-between;
-            padding: 8px 48px; background: rgba(13,43,30,0.97);
-            backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.2);
+            padding: 8px 48px; background: var(--nav);
+            backdrop-filter: blur(12px); border-bottom: 1px solid var(--nav-line);
         }
         .nav-logo a { display: flex; align-items: center; gap: 10px; text-decoration: none; }
         .nav-logo img { height: 58px; width: auto; display: block; }
         .nav-logo span { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--gold-light); }
-        .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
-        .nav-links a { font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.8); text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase; transition: color .3s; white-space: nowrap; }
+        .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+        .nav-links a { font-size: 11px; font-weight: 500; color: var(--on-dark); text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase; transition: color .3s; white-space: nowrap; }
+        .theme-switch { display: flex; gap: 6px; }
+        .theme-switch button { font-family: inherit; font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; padding: 6px 10px; border-radius: 2px; border: 1px solid var(--nav-line); background: transparent; color: var(--on-dark); cursor: pointer; }
+        .theme-switch button.on { background: var(--gold); color: var(--green); border-color: var(--gold); }
         .nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
         .nav-cta { background: var(--gold)!important; color: var(--green)!important; padding: 8px 18px!important; border-radius: 2px; font-weight: 500!important; }
         .nav-cta:hover { background: var(--gold-light)!important; }
@@ -51,12 +81,17 @@
         }
         .hero::before {
             content: ''; position: absolute; inset: 0;
-            background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(45,110,71,.25), transparent 70%);
+            background: radial-gradient(ellipse 60% 60% at 50% 50%, var(--hero-glow), transparent 70%);
         }
         .hero-content { position: relative; z-index: 2; max-width: 1180px; width: 100%; }
         .hero-tag { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 500; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
         .hero-mark { width: min(1100px, 96vw); height: auto; display: block; margin: 0 auto 12px; }
-        .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 2.5vw, 24px); font-weight: 300; font-style: italic; color: rgba(255,255,255,.7); margin-bottom: 24px; }
+        .hero-new { display: none; }
+        html[data-theme="banner"] .hero { background: var(--cream); }
+        html[data-theme="banner"] .hero-old { display: none; }
+        html[data-theme="banner"] .hero-new { display: block; }
+        html[data-theme="banner"] .hero-sub { color: #4a5960; }
+        .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 2.5vw, 24px); font-weight: 300; font-style: italic; color: var(--on-dark-soft); margin-bottom: 24px; }
 
         /* CONTENT SECTION */
         .content-section { padding: 80px 60px; max-width: 1100px; margin: 0 auto; }
@@ -68,7 +103,7 @@
         /* CARDS & GRID */
         .phil-card { background: var(--green); color: var(--white); padding: 40px; border-radius: 4px; border-top: 3px solid var(--gold); margin-bottom: 60px; }
         .phil-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold-light); margin-bottom: 16px; }
-        .phil-card p { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.8); margin-bottom: 12px; }
+        .phil-card p { font-size: 15px; font-weight: 300; line-height: 1.8; color: var(--on-dark); margin-bottom: 12px; }
 
         .capabilities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 30px; }
         .cap-card { background: var(--white); border-top: 3px solid var(--gold); padding: 32px 26px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
@@ -79,7 +114,7 @@
         .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
 
         /* FOOTER */
-        footer { background: var(--green); padding: 40px 60px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(201,168,76,.15); color: rgba(255,255,255,.4); font-size: 11px; gap: 20px; }
+        footer { background: var(--green); padding: 40px 60px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--footer-line); color: var(--footer-ink); font-size: 11px; gap: 20px; }
         footer a { color: var(--gold-light); text-decoration: none; }
         .footer-brand { display: flex; align-items: center; gap: 12px; }
         .footer-brand img { height: 36px; width: auto; border-radius: 5px; }
@@ -110,6 +145,10 @@
             <li><a href="index.html#services">Services</a></li>
             <li><a href="index.html#why">Why Us</a></li>
             <li><a href="AviralQuant.html" class="active">अविरलQuant</a></li>
+            <li class="theme-switch">
+                <button type="button" id="themeOld">Old theme</button>
+                <button type="button" id="themeBanner" class="on">Banner</button>
+            </li>
             <li><a href="index.html#contact" class="nav-cta">Contact Us</a></li>
         </ul>
     </nav>
@@ -119,7 +158,8 @@
         <div class="hero-content">
             <div class="hero-tag">Automated Systems</div>
             <h1>
-                <img class="hero-mark" src="assets/aviralquant-hero.png" width="2172" height="724" alt="अविरलQuant — Systems for a brighter edge">
+                <img class="hero-mark hero-old" src="assets/aviralquant-hero.png" width="2172" height="724" alt="अविरलQuant — Systems for a brighter edge">
+                <img class="hero-mark hero-new" src="assets/aviralquant-hero-sage.jpg" width="2000" height="1116" alt="अविरलQuant — Systems for a sharper edge.">
             </h1>
             <p class="hero-sub">Next-Generation Quantitative & Algorithmic Trading Software</p>
         </div>
@@ -167,6 +207,26 @@
         </div>
         <div><a href="index.html">Back to Main Site</a></div>
     </footer>
+    <script>
+    (function () {
+        var key = "aq-page-theme";
+        var oldBtn = document.getElementById("themeOld");
+        var bannerBtn = document.getElementById("themeBanner");
+        function apply(name) {
+            var banner = name === "banner";
+            if (banner) document.documentElement.setAttribute("data-theme", "banner");
+            else document.documentElement.removeAttribute("data-theme");
+            oldBtn.classList.toggle("on", !banner);
+            bannerBtn.classList.toggle("on", banner);
+            try { localStorage.setItem(key, banner ? "banner" : "classic"); } catch (e) {}
+        }
+        oldBtn.addEventListener("click", function () { apply("classic"); });
+        bannerBtn.addEventListener("click", function () { apply("banner"); });
+        var saved = "banner";
+        try { if (localStorage.getItem(key) === "classic") saved = "classic"; } catch (e) {}
+        apply(saved);
+    })();
+    </script>
 
 </body>
 </html>
